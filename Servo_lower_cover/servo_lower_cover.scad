@@ -1,12 +1,12 @@
 //-------------------------------------------------------------------
-//-- Servo lid replacement
-//-- (c) Juan Gonzalez-Gomez (Obijuan). Sep-2012
+//-- Servo Lower cover
+//-- (c) Juan Gonzalez-Gomez (Obijuan). May-2013
 //-------------------------------------------------------------------
-//-- The original lid has been design for the Futaba 3003 servos
+//-- The original cover has been design for the Futaba 3003 servos
 //-- But, as it is a parameterized design, the user can easily
 //-- adapt to other servos
 //--
-//--  In addition, it is very easy to modify the lid to add a fake
+//--  In addition, it is very easy to modify the cover to add a fake
 //--- shaft, or in general customize it for improving the design
 //--
 //--  It is particulary interesting for designing robots. If a fake
