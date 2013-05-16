@@ -27,7 +27,7 @@ use <obiscad/bevel.scad>
 //-----------------------------------------------------------------------------------
 
 //-- Fake shaft
-fake_shaft = true;   //-- Set to false for removing
+fake_shaft = false;   //-- Set to false for removing
 fake_shaft_len = 6;  //-- Shaft length
 fake_shaft_diam = 8;  //-- Shaft diameter
 fake_shaft_xpos = -10.1;  //-- X coordinate of the shaf position
@@ -85,6 +85,24 @@ ch_cres = 4;  //-- Cable hole corner resolution
 bevel_cr = 0.5;
 
 
+//------------------------ Servo ears -----------------------
+servo_ears = true;
+
+//-- Estandar futaba ears
+//ears_size = [7.8, 18, 2.5];
+
+
+//-- Ears with the same height than the cover
+//-- Uncomment if needed
+ears_size = [7.8, 18, bsize[Z]];
+
+ears_drill = 3.2;
+
+//-- Penetration of ear in the cover
+ear_pen = 0.5;  
+
+//-- Ear drill coordinates
+ear_drill_pos = [4.1, 9.6/2, 0];
 
 
 //---------------------------------------------------------------------------------
@@ -300,26 +318,44 @@ fs_con_pair = [
   [[0,0,-fake_shaft_len/2],[0,0,1],0]
 ];
 
+//-------------------------------
+//--  DATA for the servo ears
+//--------------------------------
+//-- Calculate the ears position
+ears_pos = [-ears_size[X]/2 - bsize[X]/2,0, ears_size[Z]/2 - bsize[Z]/2];
 
+//-- Connector pais for beveling the servo ears
+ear_conn_pair1 = [
+    [[-ears_size[X]/2, ears_size[Y]/2, 0], [0,0,1],0],
+    [[-ears_size[X]/2, ears_size[Y]/2, 0], [-1,1,0], 0],
+];
 
-//------------------------ Servo ears -----------------------
-ear_pen = 0.5;  //-- Penetration of ear in the cover
-ears_size = [7.8,18, 2.5];
-ears_pos = [ears_size[X]/2 + bsize[X]/2 - ear_pen,0, ears_size[Z]/2 - bsize[Z]/2];
+ear_conn_pair2 = [
+    [[-ears_size[X]/2, -ears_size[Y]/2, 0], [0,0,1],0],
+    [[-ears_size[X]/2, -ears_size[Y]/2, 0], [-1,-1,0], 0],
+];
 
-translate([ear_pen,0,0])
-cube([ears_size[X]+ear_pen, ears_size[Y], ears_size[Z]], center = true );
+module servo_ear()
+{
 
+  difference() {
+    translate([ear_pen/2,0,0])  //-- ear_pen
+      cube([ears_size[X]+ear_pen, ears_size[Y], ears_size[Z]], center = true );
 
+    //-- Upper drill
+    translate([ears_size[X]/2 - ear_drill_pos[X], ear_drill_pos[Y],0])
+      cylinder(r=ears_drill/2, h = ears_size[Z]+extra, center = true);
 
-/*
-translate(ears_pos)
-cube(ears_size, center = true );
-
-translate([-ears_pos[X],0,ears_pos[Z]])
-cube(ears_size, center = true );
-*/
-
+    //-- Lower drill
+    translate([ears_size[X]/2 - ear_drill_pos[X], -ear_drill_pos[Y],0])
+      cylinder(r=ears_drill/2, h = ears_size[Z]+extra, center = true);
+      
+    //-- Bevel the left corners
+    bevel(ear_conn_pair1[0], ear_conn_pair1[1], ears_size[Z]+extra, cr = bevel_cr);
+    bevel(ear_conn_pair2[0], ear_conn_pair2[1], ears_size[Z]+extra, cr = bevel_cr);
+  }
+  
+}
 
 //----------------------------------------------------------------
 //---         CODE!!
@@ -329,7 +365,7 @@ cube(ears_size, center = true );
 //-----------------------------------------------------------------
 
 
-*difference() {
+difference() {
 
   //-- Main Base
   bcube(bsize,cr=b_cr, cres=b_cres);
@@ -370,5 +406,26 @@ if (fake_shaft) {
   attach(fs_con_pair[0], fs_con_pair[1])
     cylinder(r=fake_shaft_diam/2, h=fake_shaft_len,center=true, $fn=50);
 }
+
+
+
+//--- Servo ears
+if (servo_ears) {
+
+  //-- Left ear. It has a cutout for making room for the wire
+  translate(ears_pos) {
+    difference() {
+      servo_ear();
+      translate([ears_size[X]/2,0,0])
+        bcube(ch_size, cr=ch_cr, cres=ch_cres);
+    }  
+  }
+
+  //-- Right ear
+  translate([-ears_pos[X],0,ears_pos[Z]])
+  mirror([1,0,0])
+  servo_ear();
+}
+
 
 
