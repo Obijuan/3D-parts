@@ -89,12 +89,12 @@ bevel_cr = 0.5;
 servo_ears = true;
 
 //-- Estandar futaba ears
-//ears_size = [7.8, 18, 2.5];
+//ears_size = [7.0, 18, 2.5];
 
 
 //-- Ears with the same height than the cover
 //-- Uncomment if needed
-ears_size = [7.8, 18, bsize[Z]];
+ears_size = [7.0, 18, bsize[Z]];
 
 ears_drill = 3.2;
 
