@@ -1,3 +1,23 @@
+use <obiscad/bcube.scad>
+
+X = 0;
+Y = 1;
+Z = 2;
+
+
+cres = 4;
+cr = 1;
+
+extra = 5;
+
+//--- Futaba body
+body_size = [19.8, 40.4, 21.6];
+body_wall_th = 1;
+
+//-- Fake elecronic board
+board_size = [body_size[X] - 2*body_wall_th,
+              body_size[Y] - 2*body_wall_th,
+              2];
 
 module ear()
 {
@@ -60,8 +80,31 @@ module futaba()
 
 }
 
+module futaba_top_cover()
+{
+}
 
+module futaba_body()
+{
+
+   body_cutout_size = [board_size[X], board_size[Y], board_size[Z]+extra];
+
+   difference() {
+     bcube(body_size, cr = cr, cres = cres);
+   
+     translate([0, 0, -body_cutout_size[Z]/2 -body_size[Z]/2 + board_size[Z] ])
+       cube(body_cutout_size, center = true);
+   }
+   
+}
+
+rotate([0,0,90])
 futaba();
+
+*futaba_body();
+
+futaba_top_cover();
+
 
 
 
