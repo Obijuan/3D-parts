@@ -7,9 +7,14 @@ X = 0;
 Y = 1;
 Z = 2;
 
-
+//------------------- Parameters
 cres = 4;
 cr = 1;
+
+//--- Servo drills (on ears)
+servo_drill_ddx = 9.6; 
+servo_drill_ddy = 48.5;
+servo_drill_ddiam = 4.2;
 
 extra = 5;
 
@@ -24,7 +29,34 @@ board_size = [body_size[X] - 2*body_wall_th,
 
 //-- Futaba top cover
 top_cover_size = [body_size[X], body_size[Y], 12];
-              
+
+//-- Ears plate
+ear_plate_size = [18, 55.5, 2.5];
+
+
+//---------------------------------------
+//-- DATA for the drills
+//---------------------------------------
+//-- Calculate the drill coordinates from the center of the base
+dx=servo_drill_ddx/2;
+dy=servo_drill_ddy/2;
+
+//-- Build the drill table, for automating the process of
+//-- making drills
+//-- All the drill are symetric respect the x and y axis
+servo_drill_table = [
+  [dx, dy, 0],
+  [-dx, dy, 0],
+  [-dx, -dy, 0],
+  [dx, -dy, 0],
+];
+
+module ear2()
+{
+  //-- Ear plate
+  
+}
+
 module ear()
 {
   we = dxf_dim(file="futaba-ears.dxf", name="we");
@@ -65,7 +97,7 @@ module futaba()
   union() {
     //-- Main part
     translate([0,0,z1/2])
-    #cube(size=[x1,y1,z1], center=true);
+    cube(size=[x1,y1,z1], center=true);
 
     //-- Top part
     translate([0,0,z1])
@@ -159,7 +191,10 @@ module futaba_top_cover()
    //-- Beveling the edges
    for (tuple = tc_bevel_table)
     bevel( tuple[0], tuple[1], l=tuple[2], cr=cr); 
-  }  
+  }
+  
+  futaba_ears();
+  
 }
 
 module futaba_body()
@@ -176,17 +211,34 @@ module futaba_body()
    
 }
 
-*rotate([0,0,90])
+module futaba_ears()
+{
+  translate([0,0,-top_cover_size[Z]/2 + ear_plate_size[Z]/2 + 2.6])
+  difference() {
+    bcube(ear_plate_size, cr = cr, cres = cres);
+  
+    //-- Drills
+    for (pos = servo_drill_table) {
+      translate(pos)
+        cylinder(r=servo_drill_ddiam/2, h=ear_plate_size[Z]+extra, center=true, $fn=10);
+    }
+  }  
+  
+}
+
+rotate([0,0,90])
 futaba();
 
-*futaba_body();
+translate([40,0,body_size[Z]/2])
+union() {
+futaba_body();
 
+translate([0, 0, top_cover_size[Z]/2 + body_size[Z]/2])
 futaba_top_cover();
+}
 
 *connector(tc_bevel_table[0][0]);
 *connector(tc_bevel_table[0][1]);
-
-
 
 
 
