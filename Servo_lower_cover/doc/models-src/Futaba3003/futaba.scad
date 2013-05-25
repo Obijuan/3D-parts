@@ -1,3 +1,5 @@
+
+
 use <obiscad/bcube.scad>
 use <obiscad/bevel.scad>
 use <obiscad/vector.scad>
@@ -15,6 +17,7 @@ cr = 1;
 servo_drill_ddx = 9.6; 
 servo_drill_ddy = 48.5;
 servo_drill_ddiam = 4.2;
+servo_shaft_dy = 10.15;
 
 extra = 5;
 
@@ -51,93 +54,7 @@ servo_drill_table = [
   [dx, -dy, 0],
 ];
 
-module ear2()
-{
-  //-- Ear plate
-  
-}
-
-module ear()
-{
-  we = dxf_dim(file="futaba-ears.dxf", name="we");
-  rd = dxf_dim(file="futaba-ears.dxf", name="rd");
-  xd = dxf_dim(file="futaba-ears.dxf", name="xd");
-  yd = dxf_dim(file="futaba-ears.dxf", name="yd");
-  we2= dxf_dim(file="futaba-ears2.dxf", name="we2");
-
-  difference() {
-    union() {
-      linear_extrude(height=we)
-       import(file="futaba-ears.dxf", layer="exterior");
-
-      translate([0,we2/2,we])
-      rotate(a=90, v=[1,0,0])
-      linear_extrude(height=we2)
-        import(file="futaba-ears2.dxf", layer="exterior");
-    }
-
-    translate([-xd,yd,0])
-      cylinder(r=rd, h=we+10, $fn=16,center=true);
-    translate([-xd,-yd,0])
-      cylinder(r=rd, h=we+10, $fn=16,center=true);
-  }
-}
-
-module futaba() 
-{
-  z1 = dxf_dim(file="futaba-main.dxf", name="z1");
-  x1 = dxf_dim(file="futaba-main.dxf", name="x1");
-  y1 = dxf_dim(file="futaba-main.dxf", name="y1");
-  ht  = dxf_dim(file="futaba-top.dxf", name="ht");
-  xs = dxf_dim(file="futaba-main.dxf",name="xs");
-  he = dxf_dim(file="futaba-main.dxf",name="he");
-
-
-
-  union() {
-    //-- Main part
-    translate([0,0,z1/2])
-    cube(size=[x1,y1,z1], center=true);
-
-    //-- Top part
-    translate([0,0,z1])
-    rotate (a=90, v=[1,0,0])
-    linear_extrude(height=y1,center=true)
-       import(file="futaba-top.dxf");
-
-   //-- Shaft part
-   translate ([xs,0,z1+ht]) 
-     rotate_extrude()
-       import(file="Futaba-shaft.dxf");
-      
-  }
-
-  translate([-x1/2,0,he]) ear();
-  translate([x1/2,0,he]) 
-    rotate(a=180, v=[0,0,1]) ear();
-
-}
-
-module ear_reinforcements()
-{
-  ear_th = 1.5;
-
-  rotate([0, 0, 90])
-  rotate([90, 0, 0])
-  translate([0, 0, -ear_th/2])
-  linear_extrude(height = ear_th)
-  polygon( [ [0, 0],                                  //-- 0
-             [0, 2],                                 //-- 1
-             [4, 0],                          //-- 2
-            ],
-            [ [0,1,2] ]);
-}
-
-module futaba_top_cover()
-{
-   h1 = 9.3;
-   
-   tc_bevel_table = [
+tc_bevel_table = [
   
   //-- Vertical corners
   //-- on quadrant 1
@@ -184,9 +101,58 @@ module futaba_top_cover()
     top_cover_size[Y] + extra,
   ],
   
-  ];    
+];    
    
+
+
+module futaba_shaft()
+{
+  rotate_extrude($fn=100)
+  polygon( [ [0, 0],             //-- 0
+             [0, 6],             //-- 1
+             [3, 6],             //-- 2
+             [3, 2],             //-- 3
+             [5, 2],             //-- 4
+             [7,0],              //-- 5
+            ],
+            [ [0,1,2,3,4,5] ]);
+}
+
+module ear_reinforcements()
+{
+  ear_th = 1.5;
+
+  rotate([0, 0, 90])
+  rotate([90, 0, 0])
+  translate([0, 0, -ear_th/2])
+  linear_extrude(height = ear_th)
+  polygon( [ [0, 0],                          //-- 0
+             [0, 2],                          //-- 1
+             [4, 0],                          //-- 2
+            ],
+            [ [0,1,2] ]);
+}
+
+
+module futaba_ears()
+{
+  translate([0,0,-top_cover_size[Z]/2 + ear_plate_size[Z]/2 + 2.6])
+  difference() {
+    bcube(ear_plate_size, cr = cr, cres = cres);
   
+    //-- Drills
+    for (pos = servo_drill_table) {
+      translate(pos)
+        cylinder(r=servo_drill_ddiam/2, h=ear_plate_size[Z]+extra, center=true, $fn=30);
+    }
+  }  
+  
+}
+
+module futaba_top_cover()
+{
+  h1 = 9.3;
+ 
   difference() {
  
    //-- Main top cover
@@ -208,6 +174,7 @@ module futaba_top_cover()
     bevel( tuple[0], tuple[1], l=tuple[2], cr=cr); 
   }
   
+  //-- Ears
   futaba_ears();
   
   //-- Ear reinforments
@@ -219,6 +186,10 @@ module futaba_top_cover()
   translate([0,-body_size[Y]/2,0])
     mirror([0,1,0])
       ear_reinforcements();
+      
+  //--- Servo shaft
+  translate([0, servo_shaft_dy, top_cover_size[Z]/2])
+  futaba_shaft();
   
 }
 
@@ -236,38 +207,26 @@ module futaba_body()
    
 }
 
-module futaba_ears()
+
+//-- Servo futaba... without the lower cover
+module futaba() 
 {
-  translate([0,0,-top_cover_size[Z]/2 + ear_plate_size[Z]/2 + 2.6])
-  difference() {
-    bcube(ear_plate_size, cr = cr, cres = cres);
-  
-    //-- Drills
-    for (pos = servo_drill_table) {
-      translate(pos)
-        cylinder(r=servo_drill_ddiam/2, h=ear_plate_size[Z]+extra, center=true, $fn=10);
-    }
-  }  
-  
-}
-
-
-
-*rotate([0,0,90])
-futaba();
-
-
-translate([0,0,body_size[Z]/2])
-union() {
+  //--  Servo body
   futaba_body();
 
+  //-- Servo top cover
   translate([0, 0, top_cover_size[Z]/2 + body_size[Z]/2])
-futaba_top_cover();
+   futaba_top_cover();
 }
 
-*connector(tc_bevel_table[0][0]);
-*connector(tc_bevel_table[0][1]);
+//----------------------------------------------------------
+//---   MAIN
+//----------------------------------------------------------
 
+translate([0,0,body_size[Z]/2])
+futaba();
 
-
+//-- fake electronic
+color("green")
+cube(board_size, center = true);
 
