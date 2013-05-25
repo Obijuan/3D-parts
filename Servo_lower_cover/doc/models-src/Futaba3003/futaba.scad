@@ -118,6 +118,21 @@ module futaba()
 
 }
 
+module ear_reinforcements()
+{
+  ear_th = 1.5;
+
+  rotate([0, 0, 90])
+  rotate([90, 0, 0])
+  translate([0, 0, -ear_th/2])
+  linear_extrude(height = ear_th)
+  polygon( [ [0, 0],                                  //-- 0
+             [0, 2],                                 //-- 1
+             [4, 0],                          //-- 2
+            ],
+            [ [0,1,2] ]);
+}
+
 module futaba_top_cover()
 {
    h1 = 9.3;
@@ -195,6 +210,16 @@ module futaba_top_cover()
   
   futaba_ears();
   
+  //-- Ear reinforments
+  translate([0,0, -top_cover_size[Z]/2 + 2.6 + ear_plate_size[Z]])
+  translate([0,body_size[Y]/2,0])
+    ear_reinforcements();
+    
+  translate([0,0, -top_cover_size[Z]/2 + 2.6 + ear_plate_size[Z]])
+  translate([0,-body_size[Y]/2,0])
+    mirror([0,1,0])
+      ear_reinforcements();
+  
 }
 
 module futaba_body()
@@ -226,14 +251,17 @@ module futaba_ears()
   
 }
 
-rotate([0,0,90])
+
+
+*rotate([0,0,90])
 futaba();
 
-translate([40,0,body_size[Z]/2])
-union() {
-futaba_body();
 
-translate([0, 0, top_cover_size[Z]/2 + body_size[Z]/2])
+translate([0,0,body_size[Z]/2])
+union() {
+  futaba_body();
+
+  translate([0, 0, top_cover_size[Z]/2 + body_size[Z]/2])
 futaba_top_cover();
 }
 
