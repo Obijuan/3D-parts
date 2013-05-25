@@ -1,4 +1,7 @@
 use <obiscad/bcube.scad>
+use <obiscad/bevel.scad>
+use <obiscad/vector.scad>
+use <obiscad/attach.scad>
 
 X = 0;
 Y = 1;
@@ -19,6 +22,9 @@ board_size = [body_size[X] - 2*body_wall_th,
               body_size[Y] - 2*body_wall_th,
               2];
 
+//-- Futaba top cover
+top_cover_size = [body_size[X], body_size[Y], 12];
+              
 module ear()
 {
   we = dxf_dim(file="futaba-ears.dxf", name="we");
@@ -82,6 +88,78 @@ module futaba()
 
 module futaba_top_cover()
 {
+   h1 = 9.3;
+   
+   tc_bevel_table = [
+  
+  //-- Vertical corners
+  //-- on quadrant 1
+  [ [[top_cover_size[X]/2, top_cover_size[Y]/2, 0], [0 ,0 ,1], 0],
+    [[top_cover_size[X]/2, top_cover_size[Y]/2, 0], [1,1,0], 0],
+    top_cover_size[Z]+extra,
+  ],
+  
+  //-- on quadrant 2
+  [ [[-top_cover_size[X]/2, top_cover_size[Y]/2, 0], [0 ,0 ,1], 0],
+    [[-top_cover_size[X]/2, top_cover_size[Y]/2, 0], [-1,1,0], 0],
+    top_cover_size[Z]+extra,
+  ],
+  
+  //-- on quadrant 3
+  [ [[-top_cover_size[X]/2, -top_cover_size[Y]/2, 0], [0 ,0 ,1], 0],
+    [[-top_cover_size[X]/2, -top_cover_size[Y]/2, 0], [-1,-1,0], 0],
+    top_cover_size[Z]+extra,
+  ],
+  
+  //-- on quadrant 4
+  [ [[top_cover_size[X]/2, -top_cover_size[Y]/2, 0], [0 ,0 ,1], 0],
+    [[top_cover_size[X]/2, -top_cover_size[Y]/2, 0], [1,-1,0], 0],
+    top_cover_size[Z]+extra,
+  ],
+  
+  //---- Beveling along the x axis
+  [
+    [[0, top_cover_size[Y]/2, top_cover_size[Z]/2], [1,0,0], 0],
+    [[0, top_cover_size[Y]/2, top_cover_size[Z]/2], [0,1,1], 0],
+    top_cover_size[X] + extra,
+  ],
+  
+  //---- Beveling along the y axis
+  [
+    [[-top_cover_size[X]/2, 0, top_cover_size[Z]/2], [0,1,0], 0],
+    [[0, top_cover_size[Y]/2, top_cover_size[Z]/2], [-1,0,1], 0],
+    top_cover_size[Y] + extra,
+  ],
+  
+   [
+    [[top_cover_size[X]/2, 0, top_cover_size[Z]/2], [0,1,0], 0],
+    [[0, top_cover_size[Y]/2, top_cover_size[Z]/2], [1,0,1], 0],
+    top_cover_size[Y] + extra,
+  ],
+  
+  ];    
+   
+  
+  difference() {
+ 
+   //-- Main top cover
+   rotate([0,0,90])
+   rotate([90,0,0])
+   translate([-top_cover_size[Y]/2, -top_cover_size[Z]/2, -top_cover_size[X]/2])
+   linear_extrude(height = body_size[X])
+   polygon( [ [0, 0],                                  //-- 0
+              [0, h1],                                 //-- 1
+              [3.5, h1 +0.5],                          //-- 2
+              [3.5 + 2.5, top_cover_size[Z]],          //-- 3
+              [top_cover_size[Y], top_cover_size[Z]],  //-- 4
+              [top_cover_size[Y], 0],                  //-- 5
+            ],
+            [ [0,1,2,3,4,5] ]);
+   
+   //-- Beveling the edges
+   for (tuple = tc_bevel_table)
+    bevel( tuple[0], tuple[1], l=tuple[2], cr=cr); 
+  }  
 }
 
 module futaba_body()
@@ -98,12 +176,17 @@ module futaba_body()
    
 }
 
-rotate([0,0,90])
+*rotate([0,0,90])
 futaba();
 
 *futaba_body();
 
 futaba_top_cover();
+
+*connector(tc_bevel_table[0][0]);
+*connector(tc_bevel_table[0][1]);
+
+
 
 
 
