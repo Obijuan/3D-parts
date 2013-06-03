@@ -5,7 +5,7 @@
 //-- Inspired by the customized retro font word pen, by BandromW6
 //--     http://www.thingiverse.com/thing:45576
 //-----------------------------------------------------------------------
-
+use <teardrop.scad>
 
 //-- Pen parameters. The usar can change them
 pen_len = 130;
@@ -63,9 +63,11 @@ module pen_vert(h, d, id, sides, tip_angle, tip_wall_th, closed = true)
     //-- Inner part
     if (closed == true)
       translate([0,0, tip_h/2 + 2])
-      cylinder(r = id/2, h = h, center = true, $fn = 20);
+      teardrop(r = id/2, h = h);
+      //cylinder(r = id/2, h = h, center = true, $fn = 20);
     else
-      cylinder(r = id/2, h = h + tip_h + extra, center = true, $fn = 20);
+      teardrop(r = id/2, h = h + extra);
+      //cylinder(r = id/2, h = h + tip_h + extra, center = true, $fn = 20);
 
   }
 }
