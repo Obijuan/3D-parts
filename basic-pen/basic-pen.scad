@@ -7,38 +7,6 @@
 //-----------------------------------------------------------------------
 use <teardrop.scad>
 
-//-- Pen parameters. The usar can change them
-pen_len = 130;
-pen_diam = 9;           //-- Pen diameter
-pen_idiam = 4;          //-- Pen inner diameter
-pen_sides = 6;
-pen_tip_angle = 20;
-pen_tip_wall_th = 1.5;
-pen_horizontal = false;
-
-
-
-//-- Build the pen
-
-*difference() {
-
- //-- Pen with tip
-  union() {
-    //-- Tip
-    color("red")
-    translate([0,0,pen_len/2])
-    cylinder(r1 = pen_diam/2, r2 = pen_idiam/2 + pen_tip_wall_th, h = pen_tip_h,
-             center = true, $fn = pen_sides);
-
-    //-- Body
-    cylinder(r = pen_diam/2, h = pen_len - pen_tip_h, center = true, $fn = pen_sides);
-  }  
-
-  //-- Inner part
-  cylinder(r = pen_idiam/2, h = pen_len + pen_tip_h + extra, center = true, $fn = 20);
-
-}
-
 //-- Build a vertical pen, from all the parameters
 module pen_vert(h, d, id, sides, tip_angle, tip_wall_th, closed = true) 
 {
@@ -52,7 +20,7 @@ module pen_vert(h, d, id, sides, tip_angle, tip_wall_th, closed = true)
     union() {
       //-- Tip
       color("red")
-      translate([0,0,pen_len/2])
+      translate([0,0,h/2])
       cylinder(r1 = d/2, r2 = id/2 + tip_wall_th, h = tip_h,
 	      center = true, $fn = sides);
 
