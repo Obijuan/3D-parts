@@ -5,7 +5,7 @@ use <obiscad/bevel.scad>
 
 
 //-- Pen-holder
-pen_diam = 8;
+pen_diam = 10;
 pen_wrap_th = 2;
 pen_hi = 10;
 clamp_empty = 4;
@@ -42,7 +42,7 @@ sky_drill_table = [
 plate_border_th = 3;
 plate_th = 2;
 
-plate_side = 2*sky_dd + sky_drill_diam + plate_border_th;
+plate_side = 2*sky_dd + sky_drill_diam + 2*plate_border_th;
 plate_size = [plate_side, plate_side, plate_th];
 
 module plate() 
