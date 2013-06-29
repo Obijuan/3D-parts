@@ -243,25 +243,30 @@ module repyz_body()
 //--    MAIN  
 //----------------------------------------------------
 wall_th = 3;
-holder_size = [base_size[X]/2 - co1_size[X]/2, base_size[Y], 14 + 2*wall_th];
+holder_size = [base_size[X]/2 - co1_size[X]/2, base_size[Y]+5, 14 + 2*wall_th];
 
 
 co_size = [holder_size[Z] - 2*wall_th, holder_size[Y] - 2*wall_th, holder_size[X] + extra];
 
+rotate([0, 90, 0])
+translate([-holder_size[X] + base_size[X]/2 + holder_size[X]/2,0,0])
+difference() {
+  translate([holder_size[X]/2 - base_size[X]/2,0,0])
+    rotate([0, 90, 0])
+      difference() {
+	bcube([holder_size[Z], holder_size[Y], holder_size[X]], cr = 3, cres = 4);
+	cube(co_size, center = true);
+      }
 
-translate([holder_size[X]/2 - base_size[X]/2,0,0])
-  rotate([0, 90, 0])
-    difference() {
-      bcube([holder_size[Z], holder_size[Y], holder_size[X]], cr = 3, cres = 4);
-      cube(co_size, center = true);
-    }
+  //-- Skymega drills
+      for (drill = sky_drill_table) {
+	translate(drill)
+	  rotate([0,0,90])
+	    teardrop(r = sky_drill_diam/2, h = holder_size[Z] + extra);
+	  //cylinder(r=sky_drill_diam/2, h=holder_size[Z]+extra,center=true, $fn=6);
+      }
+}
 
-//-- Skymega drills
-    for (drill = sky_drill_table) {
-      translate(drill)
-	cylinder(r=sky_drill_diam/2, h=holder_size[Z]+extra,center=true, $fn=6);
-    }
-
-repyz_body();
+*repyz_body();
 
 
