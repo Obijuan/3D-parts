@@ -13,7 +13,7 @@ Y = 1;
 Z = 2;
 
 //-- Drawer parameters
-drawer_size = [74, 85, 28];
+drawer_size = [74, 98, 28];
 drawer_bottom_th = 1.5;
 drawer_wall_th = 1.6;
 
@@ -88,8 +88,6 @@ module cabinet()
 {
   inner = [cab_size[X] - 2*cab_th, cab_size[Y], cab_size[Z] - 2*cab_th];
 
-  //-- rotation, for making it printable
-  rotate([90,0,0])
   union() {
   difference() {
 
@@ -218,5 +216,8 @@ drawer_4x4();
 //drawer_2x1();
 //drawer_1x1();
 
-//cabinet();
+//--- Cabinet
+//-- rotation, for making it printable
+*rotate([90,0,0])
+  cabinet();
 
