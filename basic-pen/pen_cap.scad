@@ -8,12 +8,13 @@
 //-- User parameters
 module pen_cap(h = 30,        //-- Total cap height 
                body_h = 17,   //-- Body height
-               th = 1,        //-- Wall thickness
-               idiam = 10.3,  //-- Inner diameter
+               th = 1.5,        //-- Wall thickness
+               idiam = 11.2,  //-- Inner diameter
                sides = 6,     //-- Number of sides
                tip_idiam = 4, //-- Tip end diameter
                closed = true, //-- If the tip is opened or closed
                base = true,   //-- Place a base on the bottom
+               base_th = 2, //-- Base thickness
               )
 {
 
@@ -21,7 +22,7 @@ module pen_cap(h = 30,        //-- Total cap height
   //-- Top thickness
   top_th = 1;
   base_lz = 1;
-  base_lr = 1;
+  base_lr = 1.5;
 
   //-- Calculations
   cap_diam = idiam + 2*th;
@@ -44,16 +45,17 @@ module pen_cap(h = 30,        //-- Total cap height
     cylinder(r = idiam/2, h = body_h + extra, center = true, $fn = sides);
   }
 
-  tip_h = (closed == true) ? cap_tip_h - top_th : cap_tip_h + 0.01;
-  pos_tip = (closed == true) ? -top_th/2 - 0.01 : 0;
+  tip_h = (closed == true) ? cap_tip_h - top_th: cap_tip_h + 0.01;
+  pos_tip = (closed == true) ? -top_th/2 - 0.05 : 0;
   
   //-- Cap tip
-  translate([0,0, cap_tip_h/2])
+  translate([0,0, cap_tip_h/2 - 0.02])
   difference() {
     cylinder(r1 = cap_diam/2, r2 = cap_tip_idiam/2 , h = cap_tip_h, center = true, $fn = sides);
     translate([0,0, pos_tip])
     cylinder(r1 = idiam/2, r2 = cap_tip_idiam/2 - th, h = tip_h, center = true, $fn = sides);
   }
+  
 }
 
 pen_cap(base = true);
