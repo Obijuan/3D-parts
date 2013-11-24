@@ -3,7 +3,7 @@ Description
 
   Printable pen with cap
 
- ![ScreenShot](https://github.com/Obijuan/3D-parts/blob/master/basic-pen/pictures/bolis-imprimibles-peq.png)
+ ![ScreenShot](https://raw.github.com/Obijuan/3D-parts/master/basic-pen/pictures/bolis-imprimibles-peq.png)
 
 Author
 -----
