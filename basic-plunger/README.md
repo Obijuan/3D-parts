@@ -3,7 +3,7 @@ Description
 
   Printable plunger for solder paste injection
 
- ![ScreenShot](https://raw.github.com/Obijuan/3D-parts/master/basic-plunger/basic-plunger-2.jpg)
+ ![ScreenShot](https://github.com/Obijuan/3D-parts/raw/master/basic-plunger/pictures/basic-plunger-2.jpg)
 
 Author
 -----
