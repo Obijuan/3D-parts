@@ -1,0 +1,10 @@
+[doc]
+-title-
+Hello world cylinder
+-description-
+A simple cylinder
+[inputs]
+float(diameter=40)
+int(height=3)
+
+
