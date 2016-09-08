@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="rule2-ok-nok.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="296.09722"
+     inkscape:cy="939.11067"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1215"
+     inkscape:window-height="1000"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="back">
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4318"
+       width="591.19666"
+       height="269.71072"
+       x="31.31473"
+       y="109.88988"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="parts">
+    <g
+       id="g4367"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-1-ok-nok.png"
+         transform="matrix(-0.01131679,-1.7830782,1.7859098,-0.01129884,-256.4015,892.36004)"
+         id="g4201">
+        <path
+           style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.56037188px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 327.14286,249.32649 25,-75.53572 39.82143,29.64286 14.46428,46.25 z"
+           id="path4148"
+           inkscape:connector-curvature="0" />
+        <circle
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path4150"
+           cx="355"
+           cy="183.79079"
+           r="2.6785715" />
+        <circle
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path4150-3"
+           cx="397.85715"
+           cy="243.25507"
+           r="2.6785715" />
+      </g>
+    </g>
+    <g
+       id="g4206"
+       style="fill:#ff7f2a"
+       transform="matrix(-1.046027,-1.4440647,1.446358,-1.0476882,335.9181,1133.9718)"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4167"
+         d="m 425.3618,203.74091 15,46.60714 -14.82143,45.89286 64.10714,-46.25 z"
+         style="fill:#ff7f2a;fill-rule:evenodd;stroke:#000000;stroke-width:0.56037188px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <circle
+         r="2.6785715"
+         cy="249.32651"
+         cx="446.07141"
+         id="path4150-6"
+         style="opacity:1;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         r="2.6785715"
+         cy="249.32651"
+         cx="480.89285"
+         id="path4150-6-7"
+         style="opacity:1;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4206-2"
+       style="fill:#ff7f2a"
+       transform="matrix(-1.0419327,1.4470216,-1.4493197,-1.0435874,1342.2388,-141.40979)"
+       inkscape:transform-center-x="-16.138427"
+       inkscape:transform-center-y="1.7874253"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4167-9"
+         d="m 425.3618,203.74091 15,46.60714 -14.82143,45.89286 64.10714,-46.25 z"
+         style="fill:#ff7f2a;fill-rule:evenodd;stroke:#000000;stroke-width:0.56037188px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <circle
+         r="2.6785715"
+         cy="249.32651"
+         cx="446.07141"
+         id="path4150-6-1"
+         style="opacity:1;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         r="2.6785715"
+         cy="249.32651"
+         cx="480.89285"
+         id="path4150-6-7-2"
+         style="opacity:1;fill:#ff7f2a;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4311"
+       transform="translate(37.647933,-2.0203052)"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4294"
+         d="m 412.64731,360.40771 31.31473,-31.31473"
+         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4294-7"
+         d="M 443.96204,360.40771 412.64731,329.09298"
+         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff0000;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 172.85714,335.44852 5,20 17.85715,-35.71429"
+       id="path4315"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       transform="translate(284.15445,-2.2717679e-6)"
+       id="g4367-0"
+       inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-2-ok-nok.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/obijuan/develop/3D-parts/2016-09-07-P2-Penrose-Tilling/images/Rule-1-ok-nok.png"
+         transform="matrix(-0.01131679,-1.7830782,1.7859098,-0.01129884,-256.4015,892.36004)"
+         id="g4201-9">
+        <path
+           style="fill:#b3b3b3;fill-rule:evenodd;stroke:#000000;stroke-width:0.56037188px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 327.14286,249.32649 25,-75.53572 39.82143,29.64286 14.46428,46.25 z"
+           id="path4148-3"
+           inkscape:connector-curvature="0" />
+        <circle
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path4150-60"
+           cx="355"
+           cy="183.79079"
+           r="2.6785715" />
+        <circle
+           style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.56037182;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="path4150-3-6"
+           cx="397.85715"
+           cy="243.25507"
+           r="2.6785715" />
+      </g>
+    </g>
+  </g>
+</svg>
