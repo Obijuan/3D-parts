@@ -1,3 +1,5 @@
+![](https://github.com/Obijuan/3D-parts/raw/master/wiki/Pendrive-holder-1-r1.jpg)
+
 # 3D-parts
 
 Collection of my 3D-parts for printing
